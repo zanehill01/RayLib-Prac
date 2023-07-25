@@ -7,7 +7,7 @@
 int main(void)
 {
 	const int s_width = 1200;
-	const int s_height = 850;
+	const int s_height = 1200;
 
 	InitWindow(s_width, s_height, "RayLib Practice Window");
 
@@ -34,6 +34,8 @@ int main(void)
 		positions[i] = (Vector3){ (float)GetRandomValue(-15, 15), heights[i] / 2.0f, (float)GetRandomValue(-15, 15) };
 		colors[i] = (Color){ GetRandomValue(20, 255), GetRandomValue(10,55), 30, 255 };
 	}
+
+	DisableCursor();
 
 	SetTargetFPS(60);
 
@@ -77,6 +79,7 @@ int main(void)
 				DrawCube((Vector3) { -16.0f, 2.5f, 0.0f }, 1.0f, 5.0f, 32.0f, BLUE);
 				DrawCube((Vector3) { 16.0f, 2.5f, 0.0f }, 1.0f, 5.0f, 32.0f, LIME);
 				DrawCube((Vector3) { 0.0f, 2.5f, 16.0f }, 32.0f, 5.0f, 1.0f, GOLD);
+				DrawCube((Vector3) { 0.0f, 2.5f, -16.0f }, 32.0f, 5.0f, 1.0f, PURPLE);
 
 				// Draw Random Cubes
 
