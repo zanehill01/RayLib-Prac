@@ -1,35 +1,34 @@
+
 #include "raylib.h"
-
-#define SCREEN_WIDTH (800)
-#define SCREEN_HEIGHT (450)
-
-#define WINDOW_TITLE "RayLib Practice"
 
 int main(void)
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
-    SetTargetFPS(60);
 
-    Texture2D texture = LoadTexture(ASSETS_PATH"test.png"); // Check README.md for how this works
+	const int s_width = 800;
+	const int s_height = 450;
 
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
+	InitWindow(s_width, s_height, "RayLib Practice Window");
+	Vector2 ballPosition = { (float)s_width / 2, (float)s_height / 2 };
 
-        ClearBackground(RAYWHITE);
+	SetTargetFPS(60);
 
-        const int texture_x = SCREEN_WIDTH / 2 - texture.width / 2;
-        const int texture_y = SCREEN_HEIGHT / 2 - texture.height / 2;
-        DrawTexture(texture, texture_x, texture_y, WHITE);
+	while (!WindowShouldClose())
+	{
+		if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 2.0f;
+		if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 2.0f;
 
-        const char* text = "OMG! IT WORKS!";
-        const Vector2 text_size = MeasureTextEx(GetFontDefault(), text, 20, 1);
-        DrawText(text, SCREEN_WIDTH / 2 - text_size.x / 2, texture_y + texture.height + text_size.y + 10, 20, BLACK);
+		if (IsKeyDown(KEY_UP)) ballPosition.y -= 2.0f;
+		if (IsKeyDown(KEY_DOWN)) ballPosition.y += 2.0f;
 
-        EndDrawing();
-    }
+		BeginDrawing();
 
-    CloseWindow();
+			ClearBackground(RAYWHITE);
+			DrawText("Move the Ball with the Arrow Keys", 10, 10, 20, DARKGRAY);
+			DrawCircleV(ballPosition, 50, MAROON);
 
-    return 0;
+		EndDrawing();
+	}
+
+	CloseWindow();
+	return 0;
 }
